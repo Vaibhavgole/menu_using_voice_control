@@ -35,14 +35,14 @@ os.system("tput setaf 7")
 print("\t\t\t------------------------")
 print("Enter the password")
 pt.speak("Enter Your password Please")
-userpaswd = gp.getpass()
+userpaswd = get_input_speech("Tell me your password: ")
 paswd = "menu"
 if userpaswd != paswd:
     print("Incorrect Password Please Try Again!!")
     pt.speak("Incorrect Password Please Try Again!!")
     exit()
-pt.speak("Choose remote or local system")
-loginto=get_input_speech("choose login to local/remote system : ")
+pt.speak("Tell me remote or local system")
+loginto=get_input_speech("Where to login to local/remote system? : ")
 
 print(loginto)
 if loginto=="local":
@@ -51,8 +51,8 @@ else:
     pt.speak("Logging to remote system")
 
 if loginto=="remote":
-    remoteip=get_input_speech("Enter the Remote system Ip: ")
-    pt.speak("Please enter remote system IP Address")
+    remoteip=get_input_speech("Give the Remote system Ip: ")
+    pt.speak("Please tell the remote system IP Address")
 os.system("clear")
 def printmenu():
     pt.speak("Here's the list what you can do")
@@ -97,10 +97,10 @@ def lvmremote(pvname,vgname,lvsize,lvname,filesystem,mount_lvm):
     pt.speak("Are you doing lvm on Aws yes or no")
     keyyesno=get_input_speech("Are you doing lvm on Aws(yes/no): ")
     if keyyesno=="yes":
-        pt.speak("Enter the Aws key path format of key should be .pem")
-        keypath=get_input_speech("Enter the Aws key path(format of key should be .pem): ")
-        pt.speak("Enter the User Name of Aws instance")
-        awsuser=get_input_speech("Enter the User Name of Aws instance: ")
+        pt.speak("Tell the Aws key path format of key should be .pem")
+        keypath=get_input_speech("Tell the Aws key path(format of key should be .pem): ")
+        pt.speak("Tell the User Name of Aws instance")
+        awsuser=get_input_speech("Tell the User Name of Aws instance: ")
         os.system("chmod go= {}".format(keypath))
         os.system("ssh -i {} {}@{}  yum install fdisk --nobest -y".format(keypath,awsuser,remoteip))
         os.system("ssh -i {} {}@{}  yum install lvm --nobest -y".format(keypath,awsuser,remoteip))
@@ -231,6 +231,7 @@ def UpdateHdfsSite():
         f.write(file_lines[i])
     f.close()
     pt.speak("Update successful")
+
 def UpdateCoreSite():
     pt.speak("starting update coresite")
     filename="/etc/hadoop/core-site.xml"
@@ -359,12 +360,12 @@ while True:
             print("Wait for Prompt to Come Up")
             os.system("aws configure")
         elif ch==19:
-            pt.speak("Enter the key pair name")
+            pt.speak("Tell the key pair name")
             Keyname=get_input_speech("Enter the key Name: ")
             pt.speak("creating key pair")
             os.system("aws ec2 create-key-pair  --key-name {}".format(Keyname))
         elif ch==20:
-            pt.speak("Enter the security group name")
+            pt.speak("Tell the security group name")
             SGname=get_input_speech("Enter the Security Name: ")
             pt.speak("Enter the VPC ID")
             Vpcid=get_input_speech("Enter the VPC ID: ")
