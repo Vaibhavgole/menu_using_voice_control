@@ -36,11 +36,6 @@ print("\t\t\t------------------------")
 print("Enter the password")
 pt.speak("Enter Your password Please")
 userpaswd = get_input_speech("Tell me your password: ")
-paswd = "menu"
-if userpaswd != paswd:
-    print("Incorrect Password Please Try Again!!")
-    pt.speak("Incorrect Password Please Try Again!!")
-    exit()
 pt.speak("Tell me remote or local system")
 loginto=get_input_speech("Where to login to local/remote system? : ")
 
